@@ -6,35 +6,48 @@ import {
   MapPin,
   Phone,
   Mail,
-  Clock3,
   MessageSquare,
   CheckCircle2,
+  Building2,
+  Factory,
 } from "lucide-react";
 
 const contactDetails = [
   {
     icon: Phone,
-    title: "Call Our Team",
-    value: "[Your Contact Number]",
-    description: "Speak with our testing team.",
+    title: "Toll-Free Support",
+    value: "1800-8911-499",
+    href: "tel:18008911499",
+    description: "Connect with our team for assistance.",
+  },
+  {
+    icon: Phone,
+    title: "Direct Contact",
+    value: "+91 9236392922",
+    href: "tel:+919236392922",
+    description: "Speak directly with our team.",
   },
   {
     icon: Mail,
     title: "Email Us",
-    value: "[Your Business Email]",
-    description: "Send us your testing requirements.",
+    value: "sp@genebiohealthcare.com",
+    href: "mailto:sp@genebiohealthcare.com",
+    description: "Share your testing requirements by email.",
+  },
+];
+
+const locations = [
+  {
+    icon: Building2,
+    title: "Registered Office",
+    address:
+      "Sec-F, E-635, LDA Colony, Kanpur Road, Lucknow – 226012, Uttar Pradesh, India.",
   },
   {
-    icon: MapPin,
-    title: "Visit Our Laboratory",
-    value: "[Full Laboratory Address]",
-    description: "Lucknow, Uttar Pradesh, India",
-  },
-  {
-    icon: Clock3,
-    title: "Working Hours",
-    value: "[Confirm Working Hours]",
-    description: "Contact us to plan your visit.",
+    icon: Factory,
+    title: "Production Unit",
+    address:
+      "A-6/1A/2, Industrial Area, Kursi Road, District Barabanki – 225302, Uttar Pradesh, India.",
   },
 ];
 
@@ -52,7 +65,6 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -62,8 +74,8 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Frontend form is ready.
-    // Connect this handler to your backend or CRM to receive enquiries.
+    // Connect this handler to your backend or form service
+    // before publishing to receive enquiries.
     console.log("Contact enquiry:", formData);
 
     setSubmitted(true);
@@ -142,9 +154,12 @@ export default function Contact() {
                         {item.title}
                       </h3>
 
-                      <p className="mt-1 text-sm font-medium text-[#424b47]">
+                      <a
+                        href={item.href}
+                        className="mt-1 inline-block text-sm font-medium text-[#424b47] transition hover:text-[#155443]"
+                      >
                         {item.value}
-                      </p>
+                      </a>
 
                       <p className="mt-1 text-xs leading-6 text-[#858d85]">
                         {item.description}
@@ -153,6 +168,21 @@ export default function Contact() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* OEM and Export */}
+            <div className="mt-9 rounded-md border border-[#e1e4dc] bg-white p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2365a5]">
+                OEM & EXPORT ENQUIRIES
+              </p>
+
+              <p className="mt-2 text-sm leading-6 text-[#68716b]">
+                For OEM and export-related enquiries, please contact our team.
+              </p>
+
+              <p className="mt-3 text-sm font-semibold text-[#153d32]">
+                Please confirm the complete contact number before publishing.
+              </p>
             </div>
 
             <div className="mt-10 border-t border-[#e4e6df] pt-7">
@@ -187,10 +217,7 @@ export default function Contact() {
 
             {submitted ? (
               <div className="rounded-md border border-[#d8e6dc] bg-[#f1f7f2] p-6">
-                <CheckCircle2
-                  size={32}
-                  className="text-[#155443]"
-                />
+                <CheckCircle2 size={32} className="text-[#155443]" />
 
                 <h3 className="mt-4 text-lg font-semibold text-[#153d32]">
                   Enquiry details captured
@@ -198,7 +225,8 @@ export default function Contact() {
 
                 <p className="mt-2 text-sm leading-7 text-[#626d65]">
                   The form interface is working. Connect it to your backend
-                  or CRM before publishing so your team receives enquiries.
+                  or form service before publishing so your team receives
+                  enquiries.
                 </p>
 
                 <button
@@ -327,6 +355,9 @@ export default function Contact() {
                     <option value="Adulteration Testing">
                       Adulteration & Authenticity Testing
                     </option>
+                    <option value="OEM and Export Enquiry">
+                      OEM & Export Enquiry
+                    </option>
                     <option value="General Enquiry">
                       General Enquiry
                     </option>
@@ -371,61 +402,77 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Location section */}
+      {/* Office locations */}
       <section className="bg-[#f1f3ee] px-5 py-16 sm:px-8 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
-          <div className="grid items-center gap-8 lg:grid-cols-2">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#2365a5]">
-                OUR LOCATION
-              </span>
+          <div className="max-w-2xl">
+            <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#2365a5]">
+              OUR LOCATIONS
+            </span>
 
-              <h2 className="mt-3 text-3xl font-semibold text-[#153d32]">
-                Find GeneBio NutriSafe.
-              </h2>
+            <h2 className="mt-3 text-3xl font-semibold text-[#153d32]">
+              Find GeneBio NutriSafe.
+            </h2>
 
-              <p className="mt-4 max-w-lg text-sm leading-7 text-[#68716b]">
-                Our laboratory is based in Lucknow, Uttar Pradesh. Contact
-                our team to confirm the address and arrange your visit or
-                sample collection.
-              </p>
-
-              <div className="mt-6 flex items-start gap-3">
-                <MapPin
-                  size={20}
-                  className="mt-1 shrink-0 text-[#155443]"
-                />
-
-                <div>
-                  <p className="text-sm font-semibold text-[#153d32]">
-                    GeneBio NutriSafe Laboratories
-                  </p>
-
-                  <p className="mt-1 text-sm text-[#68716b]">
-                    [Full address], Lucknow, Uttar Pradesh, India
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex min-h-[280px] items-center justify-center rounded-md border border-[#dce2d9] bg-[#e7ebe4] p-8 text-center sm:min-h-[340px]">
-              <div className="max-w-xs">
-                <MapPin
-                  size={34}
-                  className="mx-auto text-[#155443]"
-                />
-
-                <p className="mt-4 text-sm font-semibold text-[#153d32]">
-                  Laboratory Location
-                </p>
-
-                <p className="mt-2 text-xs leading-6 text-[#68716b]">
-                  Add your verified Google Maps embed here once the
-                  laboratory address is confirmed.
-                </p>
-              </div>
-            </div>
+            <p className="mt-4 text-sm leading-7 text-[#68716b]">
+              Connect with GeneBio NutriSafe Laboratories at the following
+              company locations. Please contact our team before planning
+              a visit or sample drop-off.
+            </p>
           </div>
+
+          <div className="mt-9 grid gap-5 md:grid-cols-2">
+            {locations.map((location) => {
+              const Icon = location.icon;
+
+              return (
+                <div
+                  key={location.title}
+                  className="flex gap-4 rounded-md border border-[#e1e4dc] bg-white p-6"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-[#eaf0eb] text-[#155443]">
+                    <Icon size={21} strokeWidth={1.8} />
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-semibold text-[#153d32]">
+                      {location.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-7 text-[#68716b]">
+                      {location.address}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* OEM and export contact */}
+      <section className="border-t border-[#e4e6df] bg-[#fcfaf8] px-5 py-12 sm:px-8">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#2365a5]">
+              BUSINESS ENQUIRIES
+            </p>
+
+            <h2 className="mt-2 text-xl font-semibold text-[#153d32]">
+              OEM & Export Partnerships
+            </h2>
+
+            <p className="mt-2 text-sm leading-7 text-[#68716b]">
+              Contact us for business, OEM and export-related discussions.
+            </p>
+          </div>
+
+          <a
+            href="mailto:sp@genebiohealthcare.com?subject=OEM%20and%20Export%20Enquiry"
+            className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#155443] px-6 text-sm font-semibold text-[#155443] transition hover:bg-[#155443] hover:text-white"
+          >
+            Email Our Team <ArrowRight size={16} />
+          </a>
         </div>
       </section>
 
